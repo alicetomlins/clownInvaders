@@ -1,13 +1,17 @@
+// INITIALIZATION:
+
 var Game = new function() {                                                                  
   var KEY_CODES = { 37:'left', 39:'right', 32 :'fire' };
   this.keys = {};
 
+//1. Initialise Canvas
   this.initialize = function(canvas_dom,level_data,sprite_data,callbacks) {
     this.canvas_elem = $(canvas_dom)[0];
     this.canvas = this.canvas_elem.getContext('2d');
     this.width = $(this.canvas_elem).attr('width');
     this.height= $(this.canvas_elem).attr('height');
 
+// What keys control user activity on game - arrow keys are used. If the correct key is pressed then the game will begin. 
     $(window).keydown(function(event) {
       if(KEY_CODES[event.keyCode]) Game.keys[KEY_CODES[event.keyCode]] = true;
     });
@@ -16,6 +20,7 @@ var Game = new function() {
       if(KEY_CODES[event.keyCode]) Game.keys[KEY_CODES[event.keyCode]] = false;
     });
 
+// Begin the game loop - after pressing spacebar
     this.level_data = level_data;
     this.callbacks = callbacks;
     Sprites.load(sprite_data,this.callbacks['start']);
@@ -23,6 +28,7 @@ var Game = new function() {
 
   this.loadBoard = function(board) { Game.board = board; };
 
+// Render game to screen - begins game loop
   this.loop = function() { 
     Game.board.step(30/1000); 
     Game.board.render(Game.canvas);
@@ -30,16 +36,17 @@ var Game = new function() {
   };
 };
 
+// Grabs sprite card and loads information from it. 
 var Sprites = new function() {
   this.map = { }; 
-
+    // Loads graphics
   this.load = function(sprite_data,callback) { 
     this.map = sprite_data;
     this.image = new Image();
     this.image.onload = callback;
     this.image.src = 'images/sprites.png';
   };
-
+    // Draws graphics - sets position information for level.js to call upon
   this.draw = function(canvas,sprite,x,y,frame) {
     var s = this.map[sprite];
     if(!frame) frame = 0;
@@ -47,11 +54,14 @@ var Sprites = new function() {
   };
 }
 
+
+// Code for the WELCOME screen - if correct keys are pressed then move on to game loop
 var GameScreen = function GameScreen(text,text2,callback) {
   this.step = function(dt) {
     if(Game.keys['fire'] && callback) callback();
   };
 
+    // Specifics for welcome screen - text information
   this.render = function(canvas) {
     canvas.clearRect(0,0,Game.width,Game.height);
     canvas.font = "bold 40px arial";
@@ -64,6 +74,8 @@ var GameScreen = function GameScreen(text,text2,callback) {
   };
 };
 
+
+// Adds and removes sprites to the game according to user activity. 
 var GameBoard = function GameBoard(level_number) {
   this.removed_objs = [];
   this.missiles = 0;
@@ -82,7 +94,7 @@ var GameBoard = function GameBoard(level_number) {
     return sprite;
   };
   
-
+// Helps code above?
   this.iterate = function(func) {
      for(var i=0,len=this.objects.length;i<len;i++) {
        func.call(this.objects[i]);
@@ -96,6 +108,8 @@ var GameBoard = function GameBoard(level_number) {
     return false;
   };
 
+    
+// If this step happens
   this.step = function(dt) { 
     this.removed_objs = [];
     this.iterate(function() { 
@@ -107,12 +121,14 @@ var GameBoard = function GameBoard(level_number) {
       if(idx != -1) this.objects.splice(idx,1);
     }
   };
-
+// Then draw this
   this.render = function(canvas) {
     canvas.clearRect(0,0,Game.width,Game.height);
     this.iterate(function() { this.draw(canvas); });
   };
 
+    
+    
   this.collision = function(o1,o2) {
     return !((o1.y+o1.h-1<o2.y) || (o1.y>o2.y+o2.h-1) ||
              (o1.x+o1.w-1<o2.x) || (o1.x>o2.x+o2.w-1));
