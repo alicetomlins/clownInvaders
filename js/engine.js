@@ -1,10 +1,10 @@
 // INITIALIZATION:
-
+    // names key functions used throughout code
 var Game = new function() {                                                                  
   var KEY_CODES = { 37:'left', 39:'right', 32 :'fire' };
   this.keys = {};
 
-//1. Initialise Canvas
+// Initialise Canvas
   this.initialize = function(canvas_dom,level_data,sprite_data,callbacks) {
     this.canvas_elem = $(canvas_dom)[0];
     this.canvas = this.canvas_elem.getContext('2d');
