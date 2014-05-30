@@ -128,12 +128,12 @@ var GameBoard = function GameBoard(level_number) {
   };
 
     
-    
+// Detecting collisions 
   this.collision = function(o1,o2) {
     return !((o1.y+o1.h-1<o2.y) || (o1.y>o2.y+o2.h-1) ||
              (o1.x+o1.w-1<o2.x) || (o1.x>o2.x+o2.w-1));
   };
-
+    // What happens if a collision occurs
   this.collide = function(obj) {
     return this.detect(function() {
       if(obj != this && !this.invulnrable)
@@ -141,15 +141,20 @@ var GameBoard = function GameBoard(level_number) {
     });
   };
 
+
+// LOADING A LEVEL 
+    // Adds level information and graphics to set location given below
   this.loadLevel = function(level) {
     this.objects = [];
     this.player = this.addSprite('player', // Sprite
                                  Game.width/2, // X
                                  Game.height - Sprites.map['player'].h - 10); // Y
-
+// 
+    // Controls line up of aliens being added as well as their position on screen - links to level.js
     var flock = this.add(new AlienFlock());
     for(var y=0,rows=level.length;y<rows;y++) {
       for(var x=0,cols=level[y].length;x<cols;x++) {
+          // gets graphics from sprite card
         var alien = Sprites.map['alien' + level[y][x]];
         if(alien) { 
           this.addSprite('alien' + level[y][x], // Which Sprite
@@ -161,6 +166,8 @@ var GameBoard = function GameBoard(level_number) {
     }
   };
 
+
+// Loads the next level if user completes the current level
   this.nextLevel = function() { 
     return Game.level_data[level_number + 1] ? (level_number + 1) : false 
   };
@@ -168,11 +175,14 @@ var GameBoard = function GameBoard(level_number) {
   this.loadLevel(Game.level_data[level_number]);
 };
 
+
+// AUDIO
+    // Set up audio channels
 var GameAudio = new function() {
   this.load_queue = [];
   this.loading_sounds = 0;
   this.sounds = {};
-
+    // Sets labels for audio throughout code
   var channel_max = 10;		
   audio_channels = new Array();
   for (a=0;a<channel_max;a++) {	
@@ -181,6 +191,7 @@ var GameAudio = new function() {
     audio_channels[a]['finished'] = -1;	
   }
 
+    // Loads audio into game
   this.load = function(files,callback) {
     var audioCallback = function() { GameAudio.finished(callback); }
 
@@ -201,6 +212,8 @@ var GameAudio = new function() {
       callback();
     }
   };
+    
+    //Plays the sounds in the game & sets the details for audio channels
 
   this.play = function(s) {
     for (a=0;a<audio_channels.length;a++) {
