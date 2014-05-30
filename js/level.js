@@ -1,4 +1,4 @@
-
+// Positons of aliens in each level
   var levelData = { 
      1:  [[0,0,0,0,0,0,0,0,0,0,0],
           [0,0,0,0,0,0,0,0,0,0,0],
@@ -22,6 +22,9 @@
           [0,0,1,1,1,1,1,1,1,1,0],
           [0,0,1,1,1,1,1,1,1,1,0],
           [0,0,1,1,1,1,1,1,1,1,0]] };
+
+
+// Positions of graphics on the sprite card
 
   var spriteData = {
     'alien1': { sx: 0,  sy: 0,  w: 23, h: 23, cls: Alien, frames: 2 },
