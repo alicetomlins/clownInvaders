@@ -123,7 +123,7 @@ Player.prototype.step = function(dt) {
   this.reloading--;
     
     // Sets how many missiles can be fired at once, also adds graphic and sound for missile. Also sets position of graphics on screen - follows user.
-  if(Game.keys['fire'] && this.reloading <= 0 && this.board.missiles < 3) {
+  if(Game.keys['fire'] && this.reloading <= 0 && this.board.missiles < 5) {
     GameAudio.play('fire');
     this.board.addSprite('missile',
                           this.x + this.w/2 - Sprites.map.missile.w/2,
