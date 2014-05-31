@@ -86,6 +86,7 @@
   }
 
 // Attaches audio to functions
+    // File names changed to match the ones below
   $(function() {
     GameAudio.load({ 'fire' : 'media/laser.ogg', 'die' : 'media/explosion.ogg' }, 
                    function() { 
