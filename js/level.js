@@ -59,7 +59,7 @@
   
 // Start game callback screen - what appears on the start screen - links to engine .js
   function startGame() {
-    var screen = new GameScreen("Challenge: Kill The Clowns","Hit Space to Begin Challenge",
+    var screen = new GameScreen("Kill The Clowns","Hit Space to Begin Challenge",
                                  function() {
                                      Game.loadBoard(new GameBoard(1));
                                  });
@@ -78,7 +78,7 @@
 
 // Win screen - what appears when the user wins
   function winGame() {
-    var screen = new GameScreen("You Have Completed The Challenge!","Bet You Can't Do It Again! Press space!",
+    var screen = new GameScreen("Bet You Can't Do That Again!","Press space to begin!",
                                  function() {
                                      Game.loadBoard(new GameBoard(1));
                                  });
