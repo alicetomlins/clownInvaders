@@ -115,6 +115,7 @@ Player.prototype.die = function() {
 
 
 // PLAYER; Explains what happens when left and right arrow keys are pressed - moves player left and right. 
+     // 100 *dt = speed
 Player.prototype.step = function(dt) {
   if(Game.keys['left']) { this.x -= 100 * dt; }
   if(Game.keys['right']) { this.x += 100 * dt; }
@@ -123,6 +124,7 @@ Player.prototype.step = function(dt) {
   if(this.x < 0) this.x = 0;
   if(this.x > Game.width-this.w) this.x = Game.width-this.w;
     
+        // 100 *dt = speed
     // Code below is set for player to move up and down
   if(Game.keys['up']) { this.y -= 100 * dt; }
   if(Game.keys['down']) { this.y += 100 * dt; }
