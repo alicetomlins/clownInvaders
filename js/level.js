@@ -69,7 +69,7 @@
 
 // End game callback screen - same as above but when the user dies
   function endGame() {
-    var screen = new GameScreen("Game Over, You Lost","Press enter to try again!",
+    var screen = new GameScreen("Game Over, Score "+playerScore,"Press enter to try again!",
                                  function() {
                                      Game.loadBoard(new GameBoard(1));
                                  });

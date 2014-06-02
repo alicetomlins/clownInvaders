@@ -66,6 +66,8 @@ Alien.prototype.die = function() {
   GameAudio.play('die');
   this.flock.speed += 1;
   this.board.remove(this);
+  playerScore++;
+  
 }
 
 // ASK
@@ -83,6 +85,7 @@ Alien.prototype.step = function(dt) {
     if(this.x > Game.width - Sprites.map.alien1.w * 2) this.flock.hit = -1;
     if(this.x < Sprites.map.alien1.w) this.flock.hit = 1;
   }
+     
   return true;
 }
     // Sets missile firing to random timing by aliens.
@@ -143,6 +146,13 @@ Player.prototype.step = function(dt) {
   return true;
 }
 
+playerScore =0; 
+scorerInterval = setInterval(function() {
+  document.getElementById("score").innerHTML = playerScore;  
+
+    
+});
+
 
 var Missile = function Missile(opts) {
    this.dy = opts.dy;
@@ -174,3 +184,4 @@ Missile.prototype.die = function() {
   if(this.board.missiles < 0) this.board.missiles=0;
    this.board.remove(this);
 }
+

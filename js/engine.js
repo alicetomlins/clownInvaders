@@ -71,6 +71,8 @@ var GameScreen = function GameScreen(text,text2,callback) {
     canvas.font = "20px Arial";
     var measure2 = canvas.measureText(text2);
     canvas.fillText(text2,Game.width/2 - measure2.width/2,Game.height/2 + 40);
+    
+      
   };
 };
 
@@ -81,6 +83,7 @@ var GameBoard = function GameBoard(level_number) {
   this.missiles = 0;
   this.level = level_number;
   var board = this;
+  //var playerScore = 0; 
 
   this.add =    function(obj) { obj.board=this; this.objects.push(obj); return obj; };
   this.remove = function(obj) { this.removed_objs.push(obj); };
@@ -109,7 +112,7 @@ var GameBoard = function GameBoard(level_number) {
   };
 
     
-// If this step happens
+// Array of removed objects - sprites that get killed
   this.step = function(dt) { 
     this.removed_objs = [];
     this.iterate(function() { 
@@ -125,6 +128,11 @@ var GameBoard = function GameBoard(level_number) {
   this.render = function(canvas) {
     canvas.clearRect(0,0,Game.width,Game.height);
     this.iterate(function() { this.draw(canvas); });
+      
+      //score
+    var scoretext = "Score: " +playerScore;
+    canvas.font = "14px Arial";
+    canvas.fillText(scoretext, 50, 50); 
   };
 
     
