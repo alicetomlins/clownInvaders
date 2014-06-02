@@ -1,7 +1,7 @@
 // INITIALIZATION:
     // names key functions used throughout code
 var Game = new function() {                                                                  
-  var KEY_CODES = { 37:'left', 39:'right', 32 :'fire' };
+  var KEY_CODES = { 37:'left', 39:'right', 32 :'fire', 38 :'up', 40 :'down', 13 :'enter' };
   this.keys = {};
 
 // Initialise Canvas
@@ -58,7 +58,7 @@ var Sprites = new function() {
 // Code for the WELCOME screen - if correct keys are pressed then move on to game loop
 var GameScreen = function GameScreen(text,text2,callback) {
   this.step = function(dt) {
-    if(Game.keys['fire'] && callback) callback();
+    if(Game.keys['enter'] && callback) callback();
   };
 
     // Specifics for welcome screen - text information

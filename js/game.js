@@ -119,6 +119,14 @@ Player.prototype.step = function(dt) {
     // Stops moving when they get to the edge of the screen = 0.
   if(this.x < 0) this.x = 0;
   if(this.x > Game.width-this.w) this.x = Game.width-this.w;
+    
+    // Code below is set for player to move up and down
+  if(Game.keys['up']) { this.y -= 100 * dt; }
+  if(Game.keys['down']) { this.y += 100 * dt; }
+
+  if(this.y < 0) this.y = 0;
+  if(this.y > Game.height-this.h) this.y = Game.height-this.h;
+
 
   this.reloading--;
     
