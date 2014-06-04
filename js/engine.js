@@ -10,7 +10,8 @@ var Game = new function() {
     this.canvas = this.canvas_elem.getContext('2d');
     this.width = $(this.canvas_elem).attr('width');
     this.height= $(this.canvas_elem).attr('height');
-
+    
+      
 // What keys control user activity on game - arrow keys are used. If the correct key is pressed then the game will begin. 
     $(window).keydown(function(event) {
       if(KEY_CODES[event.keyCode]) Game.keys[KEY_CODES[event.keyCode]] = true;
@@ -27,6 +28,7 @@ var Game = new function() {
   };
 
   this.loadBoard = function(board) { Game.board = board; };
+    
 
 // Render game to screen - begins game loop
   this.loop = function() { 
