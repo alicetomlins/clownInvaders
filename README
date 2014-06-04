@@ -1,4 +1,9 @@
-A Simple HTML5 Game To-be used in a Tutorial
+Space Invaders Year 2 Project
+
+New clown theme developed, ability for the user to move up and down as well as left and right, score counter added to code, amount of missiles able to be fired by the user has been changed, the speed of the alien's movement has been changed, two new levels added, new alien added in completely new sprites, sounds have been changed, start key changed to enter button on keyboard and all code is now commented. 
+
+
+Original code taken from:
 
 Slides up at:
 http://www.slideshare.net/cykod/html5-game-development-introduction-5815787
